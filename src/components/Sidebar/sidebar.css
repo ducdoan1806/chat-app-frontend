@@ -1,0 +1,23 @@
+.sidebar {
+  height: 100vh;
+  background: #fff;
+  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.1);
+}
+.sidebar__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 36px 24px 20px 24px;
+  span {
+    font-size: 20px;
+    font-weight: 600;
+  }
+  button {
+    background: none;
+    img{
+      display: block;
+      width: 25px;
+      height: auto;
+    }
+  }
+}
