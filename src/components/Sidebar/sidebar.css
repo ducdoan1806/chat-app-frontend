@@ -7,17 +7,25 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 36px 24px 20px 24px;
+  padding: 32px 18px 20px 18px;
   span {
     font-size: 20px;
     font-weight: 600;
   }
   button {
     background: none;
-    img{
+    img {
       display: block;
       width: 25px;
       height: auto;
     }
   }
+}
+.sidebar__title {
+  padding: 0 18px 20px 18px;
+  font-size: 16px;
+  font-weight: 600;
+}
+.sidebar__messages {
+  padding-bottom: 20px;
 }
