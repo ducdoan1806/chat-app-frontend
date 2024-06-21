@@ -1,0 +1,25 @@
+.header {
+  background: #fff;
+  width: 100%;
+  border-bottom: 1px solid rgb(219, 219, 219);
+  display: flex;
+  align-items: center;
+  height: 75px;
+  padding: 0 16px;
+  gap: 10px;
+}
+.header__avatar {
+  max-width: 44px;
+  min-width: 44px;
+  height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f5edc3;
+  border-radius: 50%;
+  font-weight: 600;
+}
+.header__name{
+    font-size: 16px;
+    font-weight: 600;
+}

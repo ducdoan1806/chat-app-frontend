@@ -1,7 +1,7 @@
 .sidebar {
   height: 100vh;
   background: #fff;
-  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.1);
+  border-right: 1px solid rgb(219, 219, 219);
 }
 .sidebar__header {
   display: flex;
@@ -27,5 +27,6 @@
   font-weight: 600;
 }
 .sidebar__messages {
-  padding-bottom: 20px;
+  height: calc(100vh - 120px);
+  overflow: auto;
 }

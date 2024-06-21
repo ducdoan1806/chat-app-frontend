@@ -1,0 +1,11 @@
+.inputMessage {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  resize: none;
+  outline: none;
+  font-size: 14px;
+  width: 100%;
+  max-height: 130px;
+  overflow: auto;
+}

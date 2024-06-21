@@ -17,6 +17,14 @@ const Sidebar = () => {
         <RoomItem />
         <RoomItem />
         <RoomItem />
+        <RoomItem />
+        <RoomItem />
+        <RoomItem />
+        <RoomItem />
+        <RoomItem />
+        <RoomItem />
+        <RoomItem />
+        <RoomItem />
       </div>
     </div>
   );
