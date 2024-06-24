@@ -1,33 +1,41 @@
 import PropTypes from "prop-types";
+import sendIcon from "../../assets/images/send.svg";
 import "./inputMessage.css";
-import ContentEditable from "react-contenteditable";
+import { useEffect, useRef } from "react";
 
 const InputMessage = ({ sendMessage, message, setMessage }) => {
+  const textareaRef = useRef(null);
   const handleChange = (e) => {
     setMessage(e.target.value);
   };
   const handleKeyDown = (e) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
-      if (message.trim() !== "") {
-        console.log("Send message:", message);
-        sendMessage();
-        setMessage("");
-      }
-    } else if (e.key === "Enter" && e.shiftKey) {
-      e.preventDefault();
-      setMessage(message + "\n");
+      sendMessage();
     }
   };
+  useEffect(() => {
+    const textarea = textareaRef.current;
 
+    textarea.style.height = "auto";
+    textarea.style.height = `${textarea.scrollHeight}px`;
+  }, [message]);
   return (
-    <ContentEditable
-      html={message} // Set HTML initial value
-      onChange={handleChange} // Handle onChange event
-      onKeyDown={handleKeyDown}
-      placeholder="Type your message..." // Add placeholder
-      className="inputMessage"
-    />
+    <div className="inputMessage">
+      <div className="inputMessage__input">
+        <textarea
+          ref={textareaRef}
+          onKeyDown={handleKeyDown}
+          onChange={handleChange}
+          value={message}
+          placeholder="Type message ..."
+          rows={1}
+        ></textarea>
+        <button onClick={sendMessage}>
+          <img width={20} height={20} src={sendIcon} alt="" />
+        </button>
+      </div>
+    </div>
   );
 };
 InputMessage.propTypes = {

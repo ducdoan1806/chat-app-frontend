@@ -1,28 +1,21 @@
 .room {
   background: #fff;
   height: 100%;
+}
+.room__header {
   display: flex;
-  justify-content: space-between;
   flex-direction: column;
 }
 .room__box {
-  max-height: 100%;
-}
-.room__input {
   display: flex;
-  align-items: center;
-  margin: 16px;
-  border: 1px solid rgb(219, 219, 219);
-  border-radius: 22px;
-  overflow: hidden;
-  padding: 10px;
-  min-height: 46px;
+  flex-direction: column;
+  height: calc(100vh - 75px);
+}
 
-  button {
-    max-width: 20px;
-    min-width: 20px;
-    img {
-      display: block;
-    }
-  }
+.room__content {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
 }
