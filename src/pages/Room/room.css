@@ -14,8 +14,9 @@
 
 .room__content {
   flex: 1;
-  padding: 10px;
+  padding: 20px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
+  gap: 15px;
 }
