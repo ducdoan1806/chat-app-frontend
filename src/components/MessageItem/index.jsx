@@ -13,6 +13,6 @@ const MessageItem = ({
 };
 MessageItem.propTypes = {
   message: PropTypes.string,
-  isMine: PropTypes.boolean,
+  isMine: PropTypes.bool,
 };
 export default MessageItem;

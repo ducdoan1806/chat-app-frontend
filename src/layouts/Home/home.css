@@ -1,6 +1,7 @@
 .home {
   display: flex;
 }
+
 .home__sidebar {
   max-width: 300px;
   min-width: 300px;
