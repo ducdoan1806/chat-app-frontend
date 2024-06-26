@@ -9,17 +9,7 @@
     background: #efefef;
   }
 }
-.roomItem__img {
-  width: 56px;
-  height: 56px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #f5edc3;
-  border-radius: 50%;
-  font-weight: 600;
-  font-size: 18px;
-}
+
 .roomItem__content {
   span {
     display: block;

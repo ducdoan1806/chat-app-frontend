@@ -1,6 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import "./roomItem.css";
 import { useId } from "react";
+import Avatar from "../Avatar";
 
 const RoomItem = () => {
   const id = useId();
@@ -9,7 +10,7 @@ const RoomItem = () => {
 
   return (
     <Link to={"/" + id} className={"roomItem" + active}>
-      <div className="roomItem__img">Đ</div>
+      <Avatar size={56} name={"Đức"} fontSize={18} />
       <div className="roomItem__content">
         <span>Đức Đoàn</span>
         <p>Vâng cảm ơn bạn nhiều</p>
