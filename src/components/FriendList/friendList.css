@@ -1,0 +1,25 @@
+.friendList__search {
+  padding: 0 16px;
+  border-bottom: 1px solid rgb(219, 219, 219);
+  display: flex;
+  align-items: center;
+  label {
+    font-size: 16px;
+    font-weight: 600;
+  }
+  input {
+    flex: 1;
+    font-size: 14px;
+    padding: 12px 20px;
+    outline: none;
+  }
+}
+.friendList__box {
+  padding: 16px 0;
+}
+.friendList__list {
+  overflow-y: auto;
+  height: calc(65vh - 125px);
+  display: flex;
+  flex-direction: column;
+}

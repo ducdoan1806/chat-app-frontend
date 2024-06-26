@@ -1,0 +1,32 @@
+.modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.6);
+}
+.modal__box {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 12px;
+  max-width: 550px;
+  width: 90%;
+  height: 65vh;
+}
+.modal__header {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 16px;
+  font-weight: 600;
+  font-size: 16px;
+  border-bottom: 1px solid rgb(219, 219, 219);
+  button {
+    font-size: 20px;
+    font-weight: 600;
+  }
+}

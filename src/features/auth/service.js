@@ -19,6 +19,11 @@ export const useUserQs = () => {
   return useQuery({
     queryKey: ["user"],
     queryFn: getUserApi,
+    throwOnError: () => {
+      document.cookie =
+        "authToken=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+      window.location.href = "/auth/login/";
+    },
     cacheTime: 1000 * 60 * 60 * 24,
   });
 };

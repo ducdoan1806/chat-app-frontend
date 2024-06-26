@@ -7,7 +7,7 @@ import { useLoginFn } from "../../features/auth/service";
 const Login = () => {
   const [login, setLogin] = useState({ username: "", password: "" });
   const loginFn = useLoginFn();
-  console.log("loginFn: ", loginFn);
+
   const changeLogin = (e) => {
     setLogin({ ...login, [e.target.name]: e.target.value });
   };
