@@ -39,7 +39,10 @@ const Room = () => {
   const messageBoxRef = useRef(null);
   const sendMessage = () => {
     if (message) {
-      setMessageArr([...messageArr, { content: message, isMine: true }]);
+      setMessageArr([
+        ...messageArr,
+        { content: message.trim().replace(/\n/g, "<br />"), isMine: true },
+      ]);
       setMessage("");
     }
   };

@@ -42,3 +42,14 @@ export const useOutside = (ref, func) => {
     };
   }, [ref, func]);
 };
+export const paleColors = [
+  "#cfe2f3", // Pale Blue
+  "#f4cccc", // Pale Pink
+  "#e6e6fa", // Pale Purple
+  "#fff2cc", // Pale Yellow
+  "#d9ead3", // Pale Green
+  "#fce5cd", // Pale Orange
+  "#e9d8b6", // Pale Brown
+  "#f2dcdb", // Pale Red
+  "#da9694", // Pale Copper
+];

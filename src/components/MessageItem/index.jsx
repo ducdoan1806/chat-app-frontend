@@ -7,7 +7,7 @@ const MessageItem = ({
   return (
     <div className={"messageItem" + (isMine ? " isMine" : "")}>
       {!isMine && <span>Đ</span>}
-      <p>{message}</p>
+      <p dangerouslySetInnerHTML={{ __html: message }} />
     </div>
   );
 };
