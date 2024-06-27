@@ -1,23 +1,33 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import "./login.css";
 import { useState } from "react";
-import { onEnter } from "../../utils/util";
-import { useLoginFn } from "../../features/auth/service";
+import { isAuthenticated, onEnter } from "../../utils/util";
+import { useDispatch, useSelector } from "react-redux";
+import { loginApi } from "../../features/auth/api";
+import {
+  loadedAuthSelector,
+  errorSelector,
+} from "../../features/auth/authSlice";
 
 const Login = () => {
+  const dispatch = useDispatch();
   const [login, setLogin] = useState({ username: "", password: "" });
-  const loginFn = useLoginFn();
+
+  const loadedAuth = useSelector(loadedAuthSelector);
+  const authError = useSelector(errorSelector);
 
   const changeLogin = (e) => {
     setLogin({ ...login, [e.target.name]: e.target.value });
   };
+
   const handleLogin = () => {
-    loginFn.mutate(login);
+    dispatch(loginApi(login));
   };
   return (
     <div className="login">
+      {(loadedAuth || isAuthenticated()) && <Navigate to="/" />}
       <input
-        style={loginFn.isError ? { borderColor: "red" } : {}}
+        style={authError ? { borderColor: "red" } : {}}
         type="text"
         placeholder="Account"
         name="username"
@@ -27,7 +37,7 @@ const Login = () => {
         }}
       />
       <input
-        style={loginFn.isError ? { borderColor: "red" } : {}}
+        style={authError ? { borderColor: "red" } : {}}
         type="password"
         placeholder="Password"
         name="password"
@@ -37,9 +47,9 @@ const Login = () => {
         }}
       />
       <button onClick={handleLogin}>Login</button>
-      {loginFn.isError && (
+      {authError?.error && (
         <p style={{ color: "red", textAlign: "center", margin: 0 }}>
-          {loginFn?.error?.response?.data?.error_description}
+          {authError?.error_description}
         </p>
       )}
       <Link>Forgot Password ?</Link>

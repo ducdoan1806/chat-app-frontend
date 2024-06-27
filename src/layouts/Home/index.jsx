@@ -1,14 +1,21 @@
 import { Outlet } from "react-router-dom";
 import "./home.css";
 import Sidebar from "../../components/Sidebar";
-import { useUserQs } from "../../features/auth/service";
-import SpinLoading from "../../components/SpinLoading";
-const Home = () => {
-  const userQs = useUserQs();
 
+import SpinLoading from "../../components/SpinLoading";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getUserApi } from "../../features/auth/api";
+import { loadingUserSelector } from "../../features/auth/userSlice";
+const Home = () => {
+  const dispatch = useDispatch();
+  const loadingUser = useSelector(loadingUserSelector);
+  useEffect(() => {
+    dispatch(getUserApi());
+  }, [dispatch]);
   return (
     <div className="home">
-      {userQs.isPending && <SpinLoading />}
+      {loadingUser && <SpinLoading />}
       <div className="home__sidebar">
         <Sidebar />
       </div>

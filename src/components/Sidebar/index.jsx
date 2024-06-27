@@ -1,17 +1,19 @@
 import "./sidebar.css";
 import noteIcon from "../../assets/images/note.svg";
 import RoomItem from "../RoomItem";
-import { useUserQs } from "../../features/auth/service";
 import Modal from "../Modal";
 import { useState } from "react";
 import FriendList from "../FriendList";
+import { useSelector } from "react-redux";
+import { currentUserSelector } from "../../features/auth/userSlice";
 
 const Sidebar = () => {
   const [openNewMessage, setOpenNewMessage] = useState(false);
+  const currentUser = useSelector(currentUserSelector);
+  console.log("currentUser: ", currentUser);
   const handleOpen = () => {
     setOpenNewMessage(!openNewMessage);
   };
-  const userQs = useUserQs();
 
   return (
     <div className="sidebar">
@@ -22,9 +24,9 @@ const Sidebar = () => {
       )}
       <div className="sidebar__header">
         <span>
-          {(userQs?.data?.data?.profile?.first_name || "--") +
+          {(currentUser?.data?.profile?.first_name || "--") +
             " " +
-            (userQs?.data?.data?.profile?.last_name || "--")}
+            (currentUser?.data?.profile?.last_name || "--")}
         </span>
         <button onClick={handleOpen}>
           <img width={30} height={30} src={noteIcon} alt="" />

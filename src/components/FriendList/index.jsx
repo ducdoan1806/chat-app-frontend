@@ -1,29 +1,36 @@
 import { useEffect } from "react";
-import { useUserListQs } from "../../features/userList/service";
 import FriendItem from "../FriendItem";
 import "./friendList.css";
 import { SOCKET_SERVER_URL } from "../../utils/util";
 import { io } from "socket.io-client";
-import { useQueryClient } from "@tanstack/react-query";
+import { useDispatch, useSelector } from "react-redux";
+import { userListApi } from "../../features/userList/api";
+import friendSlice, {
+  friendsSelector,
+  loadedFriendSelector,
+  loadingFriendSelector,
+} from "../../features/userList/friendSlice";
 
 const FriendList = () => {
-  const queryClient = useQueryClient();
-  const userList = useUserListQs();
+  const dispatch = useDispatch();
+  const friends = useSelector(friendsSelector);
+
+  const loadedFriend = useSelector(loadedFriendSelector);
+  const loadingFriend = useSelector(loadingFriendSelector);
+  console.log("loadingFriend: ", loadingFriend);
   const socket = io(SOCKET_SERVER_URL, { transports: ["websocket"] });
   useEffect(() => {
+    dispatch(userListApi());
+  }, [dispatch]);
+  useEffect(() => {
     socket.on("user-list", (data) => {
-      if (userList.isFetched) {
-        userList.data.results.push(data);
-        queryClient.setQueryData(["userList"], (prev) => {
-          return prev;
-        });
-      }
+      dispatch(friendSlice.actions.addFriend(data));
     });
 
     return () => {
       socket.off("user-list");
     };
-  }, [queryClient, socket, userList?.isFetched, userList?.data?.results]);
+  }, [socket, dispatch]);
   return (
     <div className="friendList">
       <div className="friendList__search">
@@ -32,9 +39,9 @@ const FriendList = () => {
       </div>
       <div className="friendList__box">
         <div className="friendList__list">
-          {userList?.isFetched &&
-            userList?.data?.results &&
-            userList?.data?.results.map((item) => (
+          {loadedFriend &&
+            friends.results &&
+            friends.results.map((item) => (
               <FriendItem
                 key={item.id}
                 first_name={item?.profile?.first_name}
