@@ -1,12 +1,21 @@
 .friendItem {
   display: flex;
   align-items: center;
-  font-weight: 600;
+
   gap: 10px;
   cursor: pointer;
   padding: 10px 16px;
   transition: all 0.2s linear;
   &:hover {
     background: #f7f7f7;
+  }
+}
+.friendItem__text {
+  span {
+    font-size: 14px;
+    font-weight: 600;
+  }
+  p{
+    font-size: 12px;
   }
 }

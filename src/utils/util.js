@@ -1,4 +1,8 @@
+import { QueryClient } from "@tanstack/react-query";
 import { useEffect } from "react";
+
+export const queryClient = new QueryClient();
+export const SOCKET_SERVER_URL = "http://localhost:3000";
 
 export const isAuthenticated = () => {
   const authToken = document.cookie
