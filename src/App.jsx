@@ -19,6 +19,7 @@ function App() {
       >
         <Route path="/" element={<NotFound />} />
         <Route path="/:id" element={<Room />} />
+        <Route path="/new-message" element={<Room />} />
         <Route path="/*" element={<NotFound />} />
       </Route>
       <Route path="/auth" element={<Auth />}>

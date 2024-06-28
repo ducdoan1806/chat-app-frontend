@@ -4,38 +4,13 @@ import Header from "../../components/Header";
 import "./room.css";
 import InputMessage from "../../components/InputMessage";
 import MessageItem from "../../components/MessageItem";
+import { useSelector } from "react-redux";
 
-const messageData = [
-  {
-    content: "tsdfkasl; asdasd as sa[dsapkl as asdklsa asdsasa",
-    isMine: false,
-  },
-  {
-    content: "tsdfkasl; asdasd as sa[dsapkl as asdklsa asdsasa",
-    isMine: false,
-  },
-  {
-    content: "tsdfkasl; asdasd as sa[dsapkl as asdklsa asdsasa",
-    isMine: false,
-  },
-  {
-    content: "tsdfkasl; asdasd as sa[dsapkl as asdklsa asdsasa",
-    isMine: false,
-  },
-  {
-    content: "tsdfkasl; asdasd as sa[dsapkl as asdklsa asdsasa",
-    isMine: false,
-  },
-  {
-    content: "tsdfkasl; asdasd as sa[dsapkl as asdklsa asdsasa",
-    isMine: false,
-  },
-  { content: "tsdfkasl; asdasd as sa[dsapkl as asdklsa asdsasa", isMine: true },
-  { content: "tsdfkasl; asdasd as sa[dsapkl as asdklsa asdsasa", isMine: true },
-];
 const Room = () => {
+  const { friend } = useSelector((state) => state.friend);
+
   const [message, setMessage] = useState("");
-  const [messageArr, setMessageArr] = useState(messageData);
+  const [messageArr, setMessageArr] = useState([]);
   const messageBoxRef = useRef(null);
   const sendMessage = () => {
     if (message) {
@@ -54,10 +29,19 @@ const Room = () => {
   return (
     <div className="room">
       <div className="room__header">
-        <Header />
+        <Header
+          first_name={friend?.profile?.first_name || "--"}
+          last_name={friend?.profile?.last_name || "--"}
+          email={friend?.email || "--"}
+        />
       </div>
       <div className="room__box">
         <div className="room__content" ref={messageBoxRef}>
+          {!messageArr.length && (
+            <p style={{ textAlign: "center", fontSize: 14, marginTop: "auto" }}>
+              Send first message
+            </p>
+          )}
           {messageArr.map((item, idx) => (
             <MessageItem
               key={idx}

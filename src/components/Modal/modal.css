@@ -16,7 +16,7 @@
   border-radius: 12px;
   max-width: 550px;
   width: 90%;
-  height: 65vh;
+  min-height: 65vh;
 }
 .modal__header {
   display: flex;

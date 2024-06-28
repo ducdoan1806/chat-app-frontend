@@ -1,8 +1,4 @@
-import { QueryClient } from "@tanstack/react-query";
-import { useEffect } from "react";
-
-export const queryClient = new QueryClient();
-export const SOCKET_SERVER_URL = "http://localhost:3000";
+import { useCallback, useEffect, useRef } from "react";
 
 export const isAuthenticated = () => {
   const authToken = document.cookie
@@ -46,14 +42,21 @@ export const useOutside = (ref, func) => {
     };
   }, [ref, func]);
 };
-export const paleColors = [
-  "#cfe2f3", // Pale Blue
-  "#f4cccc", // Pale Pink
-  "#e6e6fa", // Pale Purple
-  "#fff2cc", // Pale Yellow
-  "#d9ead3", // Pale Green
-  "#fce5cd", // Pale Orange
-  "#e9d8b6", // Pale Brown
-  "#f2dcdb", // Pale Red
-  "#da9694", // Pale Copper
-];
+
+export const useDebounced = (callback, delay) => {
+  const timeoutRef = useRef(null);
+
+  const debouncedCallback = useCallback(
+    (...args) => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+      timeoutRef.current = setTimeout(() => {
+        callback(...args);
+      }, delay);
+    },
+    [callback, delay]
+  );
+
+  return debouncedCallback;
+};

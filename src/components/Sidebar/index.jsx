@@ -2,26 +2,41 @@ import "./sidebar.css";
 import noteIcon from "../../assets/images/note.svg";
 import RoomItem from "../RoomItem";
 import Modal from "../Modal";
-import { useState } from "react";
+
 import FriendList from "../FriendList";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { currentUserSelector } from "../../features/auth/userSlice";
+import {
+  closeModal,
+  modalSelector,
+  openModal,
+} from "../../features/modalSlice";
 
 const Sidebar = () => {
-  const [openNewMessage, setOpenNewMessage] = useState(false);
+  const dispatch = useDispatch();
+  const modal = useSelector(modalSelector);
   const currentUser = useSelector(currentUserSelector);
-  console.log("currentUser: ", currentUser);
+
   const handleOpen = () => {
-    setOpenNewMessage(!openNewMessage);
+    dispatch(
+      openModal({
+        name: "friend-list",
+        modal: (
+          <Modal
+            close={() => {
+              dispatch(closeModal("friend-list"));
+            }}
+          >
+            <FriendList />
+          </Modal>
+        ),
+      })
+    );
   };
 
   return (
     <div className="sidebar">
-      {openNewMessage && (
-        <Modal close={handleOpen}>
-          <FriendList />
-        </Modal>
-      )}
+      {modal.find((item) => item.name === "friend-list")?.modal || ""}
       <div className="sidebar__header">
         <span>
           {(currentUser?.data?.profile?.first_name || "--") +
