@@ -1,6 +1,6 @@
 import "./sidebar.css";
 import noteIcon from "../../assets/images/note.svg";
-import RoomItem from "../RoomItem";
+// import RoomItem from "../RoomItem";
 import Modal from "../Modal";
 
 import FriendList from "../FriendList";
@@ -48,20 +48,7 @@ const Sidebar = () => {
         </button>
       </div>
       <div className="sidebar__title">Messages</div>
-      <div className="sidebar__messages">
-        <RoomItem />
-        <RoomItem />
-        <RoomItem />
-        <RoomItem />
-        <RoomItem />
-        <RoomItem />
-        <RoomItem />
-        <RoomItem />
-        <RoomItem />
-        <RoomItem />
-        <RoomItem />
-        <RoomItem />
-      </div>
+      <div className="sidebar__messages"></div>
     </div>
   );
 };
