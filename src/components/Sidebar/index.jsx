@@ -1,6 +1,6 @@
 import "./sidebar.css";
 import noteIcon from "../../assets/images/note.svg";
-// import RoomItem from "../RoomItem";
+import RoomItem from "../RoomItem";
 import Modal from "../Modal";
 
 import FriendList from "../FriendList";
@@ -16,6 +16,9 @@ const Sidebar = () => {
   const dispatch = useDispatch();
   const modal = useSelector(modalSelector);
   const currentUser = useSelector(currentUserSelector);
+  const { rooms: roomList, loaded: roomListLoaded } = useSelector(
+    (state) => state.room
+  );
 
   const handleOpen = () => {
     dispatch(
@@ -48,7 +51,12 @@ const Sidebar = () => {
         </button>
       </div>
       <div className="sidebar__title">Messages</div>
-      <div className="sidebar__messages"></div>
+      <div className="sidebar__messages">
+        {roomListLoaded &&
+          roomList.map((item) => (
+            <RoomItem key={item?.id} {...item} userId={currentUser?.data?.id} />
+          ))}
+      </div>
     </div>
   );
 };
