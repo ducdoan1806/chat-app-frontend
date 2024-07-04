@@ -15,7 +15,9 @@ const messageSlice = createSlice({
     getMessage: (state) => {
       state.loading = true;
     },
-
+    resetError: (state) => {
+      state.error = null;
+    },
     addMessage: (state, action) => {
       state.messages.push(action.payload);
     },

@@ -15,13 +15,17 @@ import { io } from "socket.io-client";
 import { SOCKET_SERVER_URL } from "../../utils/const";
 import { messageApi } from "../../features/message/messageApi";
 import messageSlice from "../../features/message/messageSlice";
+import { getCookie } from "../../utils/util";
 
 const Room = () => {
   const [message, setMessage] = useState("");
   const [socket, setSocket] = useState(null);
-  const { messages: messageData, loaded: messageLoaded } = useSelector(
-    (state) => state.message
-  );
+  // const navigate = useNavigate();
+  const {
+    messages: messageData,
+    loaded: messageLoaded,
+    // error: messageError,
+  } = useSelector((state) => state.message);
 
   const messageBoxRef = useRef(null);
   const dispatch = useDispatch();
@@ -41,17 +45,17 @@ const Room = () => {
   }, [dispatch, roomId, roomLoaded]);
 
   useEffect(() => {
-    const newSoket = io(SOCKET_SERVER_URL);
+    const newSoket = io(SOCKET_SERVER_URL, {
+      transports: ["websocket", "polling"],
+    });
     setSocket(newSoket);
     if (loadedUser && roomLoaded) {
       newSoket.emit("join-room", {
         room: roomId,
         userId: currentUser?.data?.id,
       });
-      newSoket.on("recieve-message", ({ userId, message }) => {
-        dispatch(
-          messageSlice.actions.addMessage({ user: userId, content: message })
-        );
+      newSoket.on("recieve-message", (data) => {
+        dispatch(messageSlice.actions.addMessage(data));
       });
     }
     return () => {
@@ -67,8 +71,8 @@ const Room = () => {
     if (message && loadedUser && socket) {
       socket.emit("send-message", {
         room: roomId,
-        message: message.trim().replace(/\n/g, "<br />"),
-        userId: currentUser?.data?.id,
+        content: message.trim().replace(/\n/g, "<br />"),
+        token: getCookie("authToken"),
       });
       setMessage("");
     }

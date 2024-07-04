@@ -15,6 +15,6 @@ export const messageApi =
       );
       dispatch(messageSlice.actions.getMessageSuccess(res?.data));
     } catch (e) {
-      dispatch(messageSlice.actions.getMessageFail(e?.data));
+      dispatch(messageSlice.actions.getMessageFail(e?.response?.data));
     }
   };

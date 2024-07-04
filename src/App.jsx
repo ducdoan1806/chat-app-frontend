@@ -17,6 +17,7 @@ function App() {
           </ProtectedRoute>
         }
       >
+        <Route path="/" element={<NotFound />} />
         <Route path="/room" element={<NotFound />} />
         <Route path="/room/:id" element={<Room />} />
         <Route path="/new-message" element={<Room />} />
