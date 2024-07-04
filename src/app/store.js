@@ -5,6 +5,7 @@ import userSlice from "../features/auth/userSlice";
 import friendSlice from "../features/userList/friendSlice";
 import modalSlice from "../features/modalSlice";
 import roomSlice from "../features/room/roomSlice";
+import messageSlice from "../features/message/messageSlice";
 
 const rootReducer = combineReducers({
   modal: modalSlice.reducer,
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   user: userSlice.reducer,
   friend: friendSlice.reducer,
   room: roomSlice.reducer,
+  message: messageSlice.reducer,
 });
 const store = configureStore({
   reducer: rootReducer,

@@ -11,12 +11,17 @@
   flex-direction: column;
   height: calc(100vh - 75px);
 }
-
-.room__content {
-  flex: 1;
-  padding: 20px;
-  overflow-y: auto;
+.room__main {
+  height: 100%;
+  overflow: auto;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+}
+.room__content {
+  align-self: flex-end;
+  width: 100%;
+  padding: 20px 20px 0px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }

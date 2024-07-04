@@ -2,23 +2,26 @@ import Avatar from "../Avatar";
 import "./header.css";
 import PropTypes from "prop-types";
 
-const Header = ({ name, email }) => {
+const Header = ({ reciever }) => {
   return (
     <div className="header">
       <Avatar
         size={44}
         fontSize={16}
-        name={name?.split(" ")[name?.split(" ").length - 1].charAt(0)}
+        name={reciever?.user_profile?.profile?.last_name}
       />
       <div className="header__name">
-        <span>{name}</span>
-        <p>{email}</p>
+        <span>
+          {(reciever?.user_profile?.profile?.first_name || "--") +
+            " " +
+            (reciever?.user_profile?.profile?.last_name || "--")}
+        </span>
+        <p>{reciever?.user_profile?.email || "--"}</p>
       </div>
     </div>
   );
 };
 Header.propTypes = {
-  name: PropTypes.string,
-  email: PropTypes.string,
+  reciever: PropTypes.object || PropTypes.undefined,
 };
 export default Header;

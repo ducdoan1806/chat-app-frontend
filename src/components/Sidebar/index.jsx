@@ -54,7 +54,7 @@ const Sidebar = () => {
       <div className="sidebar__messages">
         {roomListLoaded &&
           roomList.map((item) => (
-            <RoomItem key={item?.id} {...item} userId={currentUser?.data?.id} />
+            <RoomItem key={item.id} {...item} userId={currentUser?.data?.id} />
           ))}
       </div>
     </div>
