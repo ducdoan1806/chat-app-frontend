@@ -20,12 +20,10 @@ import { getCookie } from "../../utils/util";
 const Room = () => {
   const [message, setMessage] = useState("");
   const [socket, setSocket] = useState(null);
-  // const navigate = useNavigate();
-  const {
-    messages: messageData,
-    loaded: messageLoaded,
-    // error: messageError,
-  } = useSelector((state) => state.message);
+
+  const { messages: messageData, loaded: messageLoaded } = useSelector(
+    (state) => state.message
+  );
 
   const messageBoxRef = useRef(null);
   const dispatch = useDispatch();
