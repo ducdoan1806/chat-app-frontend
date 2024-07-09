@@ -14,10 +14,10 @@ const messageSlice = createSlice({
   reducers: {
     getMessage: (state) => {
       state.loading = true;
-    },
-    resetError: (state) => {
       state.error = null;
+      state.loaded = false;
     },
+
     addMessage: (state, action) => {
       state.messages.push(action.payload);
     },

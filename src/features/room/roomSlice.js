@@ -15,6 +15,7 @@ const roomSlice = createSlice({
   reducers: {
     getRoom: (state) => {
       state.loading = true;
+      state.loaded = false;
     },
     getRoomById: (state, action) => {
       state.room = state.rooms.find(
@@ -41,6 +42,19 @@ const roomSlice = createSlice({
     setSearchQuery(state, action) {
       state.searchQuery = action.payload.searchQuery;
       state.page = 1; // Reset page on search
+    },
+    createRoom: (state) => {
+      state.loading = true;
+    },
+    createRoomSuccess: (state, action) => {
+      state.loading = false;
+      state.loaded = true;
+      state.room = action.payload?.data?.room;
+    },
+    createRoomFail: (state, action) => {
+      state.loading = false;
+      state.loaded = false;
+      state.error = action.payload;
     },
   },
 });
