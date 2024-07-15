@@ -5,29 +5,30 @@ import "./roomItem.css";
 import Avatar from "../Avatar";
 
 const RoomItem = (props) => {
-  let userIndex = 0;
-  if (props.userId === props.user_created) {
-    userIndex = 1;
-  }
-  const nameArr = props.name.split(", ");
-  
   const location = useLocation();
-  const active =
-    location.pathname === "/room/" + props?.id ? " roomItem--active" : "";
 
+  const userProfile = props.member?.find(
+    (item) => item?.user_profile?.id !== props?.userId
+  )?.user_profile;
+  const active =
+    location.pathname === "/room/" + userProfile?.id ? " roomItem--active" : "";
   return (
-    <Link to={"/room/" + props?.id} className={"roomItem" + active}>
+    <Link to={"/room/" + userProfile?.id} className={"roomItem" + active}>
       <Avatar
         size={56}
         name={
-          nameArr[userIndex].split(" ")[
-            nameArr[userIndex].split(" ").length - 1
-          ]
+          (userProfile?.profile?.first_name || "--") +
+          " " +
+          (userProfile?.profile?.last_name || "--")
         }
         fontSize={18}
       />
       <div className="roomItem__content">
-        <span>{nameArr[userIndex] || "--"}</span>
+        <span>
+          {(userProfile?.profile?.first_name || "--") +
+            " " +
+            (userProfile?.profile?.last_name || "--")}
+        </span>
         <p>{props?.messages}</p>
       </div>
     </Link>

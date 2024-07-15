@@ -8,9 +8,10 @@ import { closeModal } from "../../features/modalSlice";
 import friendSlice from "../../features/userList/friendSlice";
 const FriendItem = ({ first_name, last_name, email, userId }) => {
   const dispatch = useDispatch();
+
   return (
     <Link
-      to={"/new-message"}
+      to={`/room/${userId}`}
       className="friendItem"
       onClick={() => {
         dispatch(closeModal("friend-list"));

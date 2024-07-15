@@ -17,11 +17,6 @@ const roomSlice = createSlice({
       state.loading = true;
       state.loaded = false;
     },
-    getRoomById: (state, action) => {
-      state.room = state.rooms.find(
-        (item) => item.id === Number(action.payload)
-      );
-    },
     addRoom: (state, action) => {
       state.rooms.push(action.payload);
     },
@@ -49,7 +44,13 @@ const roomSlice = createSlice({
     createRoomSuccess: (state, action) => {
       state.loading = false;
       state.loaded = true;
-      state.room = action.payload?.data?.room;
+      state.room = action.payload;
+      if (
+        !state.rooms.find((item) => item.id === action.payload.id) &&
+        action.payload.messages
+      ) {
+        state.rooms.push(action.payload);
+      }
     },
     createRoomFail: (state, action) => {
       state.loading = false;
